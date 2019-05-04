@@ -4,15 +4,15 @@ import requests
 import json
 from datetime import date
 from datetime import datetime
+import os.path
 
 #id's and keys
 ECU_ID = '<ecuid>'
 PV_OUTPUT_SYSTEMID = '<systemid>'
 PV_OUTPUT_APIKEY = '<apikey>'
 
-#create a file somewhere and put the current datetime in it in format "20190502 08:00"
-#enter the path and filename below
-LAST_UPDATE_FILE = "/home/pi/aps/lastupdate"
+#enter a path and filename below, a file wil be create to save the last update datetime
+LAST_UPDATE_FILE = "<path/file>" #example "text.txt" or "/home/pi/aps/lastupdate"
 
 #usually all below this point should not be modified
 MAX_NUMBER_HISTORY = 6
@@ -62,6 +62,9 @@ def sendUpdateToPVOutput(timestringminutes, powerstring):
     responsepv = requests.post(PVOUTPUT_URL, headers=headerspv, data=pvoutputdata)
 
     print ("Response: " + responsepv.text + " updated: " + timestringminutes + " power: " + powerstring)
+
+if not os.path.isfile(LAST_UPDATE_FILE):
+    writeLastUpdate('00:00') #create file for the first time
 
 rootdict = getDataFromAPS()
 timesstring = rootdict.get("data").get("time")
