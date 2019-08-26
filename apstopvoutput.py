@@ -15,7 +15,7 @@ PV_OUTPUT_APIKEY = '<apikey>'
 LAST_UPDATE_FILE = "<path/file>" #example "text.txt" or "/home/pi/aps/lastupdate"
 
 #usually all below this point should not be modified
-MAX_NUMBER_HISTORY = 6
+MAX_NUMBER_HISTORY = 12
 APSYSTEMS_URL = 'http://api.apsystemsema.com:8073/apsema/v1/ecu/getPowerInfo'
 PVOUTPUT_URL = 'http://pvoutput.org/service/r2/addstatus.jsp'
 
